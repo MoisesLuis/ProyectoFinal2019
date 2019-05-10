@@ -10,9 +10,9 @@ public class VentanaInicio extends JFrame implements ActionListener {
     JButton botonAceptar,botonCrear;
     JPanel panel1;
     private String nombre;
-    public VentanaInicio(String titulo){
+    public VentanaInicio(){
         //super(titulo);
-        //this.setTitle(titulo);
+        this.setTitle(nombre);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //this.setSize(800,800);
         //setLocationRelativeTo(null);
@@ -109,7 +109,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]){
-        VentanaInicio obj1 = new VentanaInicio("titulo");
+        VentanaInicio obj1 = new VentanaInicio();
         obj1.setBounds(0,0,800,500);
         obj1.setLocationRelativeTo(null);
         obj1.setResizable(false);

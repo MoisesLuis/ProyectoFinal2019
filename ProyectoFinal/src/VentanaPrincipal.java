@@ -11,7 +11,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     //private JPanel panelEscenario,panelElejir;
     private JMenuBar menuBar = new JMenuBar();
     private JMenu menuArchivo, menuOpciones;
-    private JMenuItem menuItemNuevo,menuItemGuardar,menuItemCargar,menuItemEstadisticas;
+    private JMenuItem menuItemNuevo,menuItemNuevoRapido,menuItemGuardar,menuItemCargar,menuItemEstadisticas;
     private JLabel labelElejirVehiculo,labelTirarDados,labelTirarDados2,imagenPanelSouth;
     private JButton botonTanq,botonAvion,botonTirarDado,botonTirarDado2;
 
@@ -23,11 +23,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     private Montaña montaña;
     private Avion miAvion;
     VentanaUsuario parametros;
-    int numCuadrosX,numCuadrosY;
+    int numCuadrosX,numCuadrosY,posXDeMVeh,posYDeMVe;
     ImageIcon imagenTanque;
+
+    private MoverVehiculo ventanaMoverVehiculo;
 
     protected Random aleatorio;
     protected int aleaPosX = 0,aleaPosY=0,contadorCantAleatorio,contadorAgua,contadorMontaña,contadorTanque,contadorAvion,contadorEnemigo;
+    String nombre;
 
 
     JPanel panel,panelCenter,panelSouth;
@@ -42,6 +45,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.setResizable(false);
         //this.getContentPane().setBackground(Color.BLACK);
 
+        nombre = titulo;
         matrizLogicaE = new int[numCuadrosX][numCuadrosY];
 
         panel = new JPanel();
@@ -111,9 +115,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         menuArchivo = new JMenu("Archivo");
         menuBar.add(menuArchivo);
 
-        menuItemNuevo = new JMenuItem("Nuevo");
+        menuItemNuevo = new JMenuItem("Nuevo partida");
         menuItemNuevo.addActionListener(this);
         menuArchivo.add(menuItemNuevo);
+
+        menuItemNuevoRapido = new JMenuItem("Nuevo partida rápida");
+        menuItemNuevoRapido.addActionListener(this);
+        menuArchivo.add(menuItemNuevoRapido);
 
         menuItemCargar = new JMenuItem("Cargar");
         menuItemCargar.addActionListener(this);
@@ -187,44 +195,85 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         imagenPanelSouth.add(botonTirarDado);
         imagenPanelSouth.add(botonTirarDado2);
         //this.setContentPane(panel);
+
         this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    /**
+     *
+     * @param e
+     * El metodo siguiente es el que nos servirá
+     * para los eventos de cada boton
+     */
     public void actionPerformed(ActionEvent e){
         int a=0,b=0;
         if (e.getSource() == botonTanq){
+            encontrarMiVehiculoEnPos();
+            abilitarTCamino();
             for (int i = 0; i<numCuadrosX; i++){
                 for (int j = 0; j<numCuadrosY; j++){
-                    if (matrizLogicaE[i][j] == 5){
+                    if (matrizLogicaE[posXDeMVeh][posYDeMVe] == 5){
                         quitarMiVehiculoActual();
                         cambiarAvionATanque();
-                        a = i;
-                        b = j;
                     }
                 }
             }
+
             System.out.println("Estas presionando el:  Tanque");
-            System.out.println("["+a+"]"+"["+b+"]");
+            System.out.println("["+posXDeMVeh+"]"+"["+posYDeMVe+"]");
+            System.out.println(matrizLogicaE[posXDeMVeh][posYDeMVe]);
+            System.out.println("/////////////////////////////////");
         }
         else if (e.getSource() == botonAvion){
+            encontrarMiVehiculoEnPos();
+            abilitarTCamino();
             for (int i = 0; i<numCuadrosX; i++){
                 for (int j = 0; j<numCuadrosY; j++){
-                    if (matrizLogicaE[i][j] == 5){
+                    if (matrizLogicaE[posXDeMVeh][posYDeMVe] == 4){
                         quitarMiVehiculoActual();
-                        cambiarTanqueAAvion(i,j);
-                        a = i;
-                        b = j;
+                        cambiarTanqueAAvion();
                     }
                 }
             }
+
             System.out.println("Estas presionando el: Avion");
-            System.out.println("["+a+"]"+"["+b+"]");
-        }else if (e.getSource() == botonTirarDado){
-            System.out.println("Estas presionando el: Dado");
+            System.out.println("["+posXDeMVeh+"]"+"["+posYDeMVe+"]");
+            System.out.println(matrizLogicaE[posXDeMVeh][posYDeMVe]);
+            System.out.println("/////////////////////////////////");
+        }
+        else if (e.getSource() == botonTirarDado){
+            System.out.println("Estas presionando el: Dado para moverte");
+            encontrarMiVehiculoEnPos();
+            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,1,matrizLogicaE,this);
+            System.out.println("["+posXDeMVeh+"]["+posYDeMVe+"]");
+        }
+        else if (e.getSource() == botonTirarDado2){
+            System.out.println("Estas presionando el: Dado para hacer Daño");
+            encontrarMiVehiculoEnPos();
+            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,2,matrizLogicaE,this);
+        }
+        else if (e.getSource() == menuItemNuevoRapido){
+            limpiarEscenario();
+            contadorAgua =0;
+            contadorMontaña=0;
+            contadorEnemigo=0;
+            contadorTanque=0;
+            contadorAvion=0;
+            contadorCantAleatorio=0;
+            colocarEscenario();
+        }
+        else if (e.getSource() == menuItemNuevo){
+            VentanaUsuario regresar = new VentanaUsuario(nombre);
+            regresar.setVisible(true);
+            this.setVisible(false);
         }
 
     }
+
+    /**
+     *
+     */
 
     public void colocarTierra(){
         String tierra = "src/imagenes/tierra/tierra.jpg";
@@ -268,10 +317,29 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
         }
         miVehiculo = new MVehiculo(matrizCuadros,tanque,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
-        matrizLogicaE[aleaPosX][aleaPosY]= 5;
+        matrizLogicaE[aleaPosX][aleaPosY] = 4;
+    }
+    public void alMoverMTanque(int posX, int posY){
+        String tanque = "src/imagenes/tanques/Mt.gif";
+        miVehiculo = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
+        matrizLogicaE[posX][posY] = 4;
+    }
+    public void alMoverMAvion(int posX, int posY){
+        String tanque = "src/imagenes/aviones/avion.gif";
+        miVehiculo = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
+        matrizLogicaE[posX][posY] = 5;
+    }
+    public void quitarMTanqueAlMover(int posX,int posY){
+        ImageIcon imagen = new ImageIcon("src/imagenes/tierra/tierra.jpg");
+        this.matrizCuadros[posX][posY].setIcon(imagen);
+        matrizLogicaE[posX][posY] = 0;
+        System.out.println("["+posX+"]["+posY+"]");
+        System.out.println(matrizLogicaE[posX][posY]);
+        //this.matrizCuadros[posX][posY] = null;
+
     }
     public void colocarMAvion(){
-        String avion = "src/imagenes/tanques/Mt.gif";
+        String avion = "src/imagenes/aviones/avion.gif";
         while (matrizLogicaE[aleaPosX][aleaPosY] !=0) {
             aleaPosX = 2+aleatorio.nextInt(this.numCuadrosX-2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
@@ -279,15 +347,40 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         miAvion = new Avion(matrizCuadros,avion,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
         matrizLogicaE[aleaPosX][aleaPosY]= 5;
     }
-    public void cambiarTanqueAAvion(int x , int y){
-        String avion = "src/imagenes/tanques/Mt.gif";
-        miAvion = new Avion(avion,x,y);
-        //miVehiculo.matrizRecorridoInsertarI(avion,x,y);
+    public void cambiarTanqueAAvion(){
+        String avion = "src/imagenes/aviones/avion.gif";
+        miAvion = new Avion(matrizCuadros,avion,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY);
+        for (int i = 0; i<numCuadrosX; i++){
+            for (int j = 0; j<numCuadrosY; j++){
+                if (matrizLogicaE[i][j] == 4){
+                    matrizLogicaE[i][j] = 5;
+                }
+            }
+        }
+        /*
+        ImageIcon avion = new ImageIcon("src/imagenes/aviones/avion.gif");
+        matrizCuadros[i][j].setIcon(new ImageIcon());
+        matrizCuadros[i][j].setContentAreaFilled(false);
+        matrizCuadros[i][j].setBorderPainted(true);
+        matrizCuadros[i][j].setIcon(avion);*/
     }
     public void cambiarAvionATanque(){
         String tanque = "src/imagenes/tanques/Mt.gif";
-        //miVehiculo = new MVehiculo(matrizCuadros,tanque,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
-
+        miVehiculo = new MVehiculo(matrizCuadros,tanque,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY);
+        for (int i = 0; i<numCuadrosX; i++){
+            for (int j = 0; j<numCuadrosY; j++){
+                if (matrizLogicaE[i][j] == 5){
+                    matrizLogicaE[i][j] = 4;
+                }
+            }
+        }
+        /*
+        ImageIcon tanque = new ImageIcon("src/imagenes/tanques/Mt.gif");
+        matrizCuadros[i][j].setIcon(new ImageIcon());
+        matrizCuadros[i][j].setContentAreaFilled(false);
+        matrizCuadros[i][j].setBorderPainted(true);
+        matrizCuadros[i][j].setIcon(tanque);
+        */
     }
     public void quitarMiVehiculoActual(){
         for (int i = 0; i<numCuadrosX; i++){
@@ -302,7 +395,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     public void colocarEscenario(){
         this.matrizCuadros = new Cuadro[numCuadrosX][numCuadrosY];
-        panelCenter.setLayout(new GridLayout(numCuadrosY,numCuadrosX));
+        panelCenter.setLayout(new GridLayout(numCuadrosX,numCuadrosY));
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
                 this.matrizCuadros[i][j] = new Cuadro(i,j,panelCenter,this);
@@ -311,7 +404,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 matrizCuadros[i][j].setContentAreaFilled(false);
                 matrizCuadros[i][j].setBorderPainted(true);
                 matrizCuadros[i][j].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
-
             }
         }
 
@@ -346,6 +438,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    public void limpiarEscenario(){
+        for (int i = 0; i<numCuadrosX; i++){
+            for (int j = 0; j<numCuadrosY; j++){
+                matrizCuadros[i][j] = null;
+                matrizLogicaE[i][j] = 0;
+            }
+            panelCenter.removeAll();
+        }
+        panelCenter.repaint();
+    }
+
     public boolean encontrarEnemigo(){
         if (matrizLogicaE[aleaPosX][aleaPosY] == 1)
             return true;
@@ -373,10 +476,22 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         return false;
     }
     public boolean encontrarComodin(){
-        if (matrizLogicaE[aleaPosX][aleaPosY] == 4)
+        if (matrizLogicaE[aleaPosX][aleaPosY] == 6)
             return true;
 
         return false;
+    }
+
+    public void encontrarMiVehiculoEnPos(){
+        for (int i = 0; i<numCuadrosX; i++){
+            for (int j = 0; j<numCuadrosY; j++){
+                if (matrizLogicaE[i][j] == 4 || matrizLogicaE[i][j] == 5){
+                    posXDeMVeh = i;
+                    posYDeMVe = j;
+                    break;
+                }
+            }
+        }
     }
 
     public void numAleatorio(){
@@ -394,6 +509,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             }
         }
 
+    }
+    public void abilitarTCamino(){
+        for (int i = 0; i<numCuadrosX; i++){
+            for (int j = 0; j<numCuadrosY; j++){
+                matrizCuadros[i][j].setEnabled(true);
+            }
+        }
     }
 
 }

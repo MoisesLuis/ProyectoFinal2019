@@ -30,7 +30,7 @@ public class MVehiculo extends Vehiculo {
         ImageIcon imagen = new ImageIcon(direct);
         for (int i = 0; i < numCuadrosX; i++) {
             for (int j = 0; j < numCuadrosY; j++) {
-                matrizCuadros[aleaPosX][aleaPosY].setIcon(new ImageIcon());
+//                matrizCuadros[aleaPosX][aleaPosY].setIcon(new ImageIcon());
                 matrizCuadros[aleaPosX][aleaPosY].setContentAreaFilled(false);
                 matrizCuadros[aleaPosX][aleaPosY].setBorderPainted(true);
                 matrizCuadros[aleaPosX][aleaPosY].setIcon(imagen);
@@ -40,14 +40,11 @@ public class MVehiculo extends Vehiculo {
 
         public void matrizRecorridoInsertarI(String direct,int x,int y){
             ImageIcon imagen = new ImageIcon(direct);
-            for (int i = 0; i<numCuadrosX; i++){
-                for (int j = 0; j<numCuadrosY; j++){
-                    matrizCuadros[x][y].setIcon(new ImageIcon());
+                   // matrizCuadros[x][y].setIcon(new ImageIcon());
                     matrizCuadros[x][y].setContentAreaFilled(false);
                     matrizCuadros[x][y].setBorderPainted(true);
                     matrizCuadros[x][y].setIcon(imagen);
-                }
-            }
+
 
         }
     @Override

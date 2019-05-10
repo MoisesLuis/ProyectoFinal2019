@@ -1,4 +1,4 @@
-import com.sun.deploy.panel.UpdatePanelFactory;
+//import com.sun.deploy.panel.UpdatePanelFactory;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -163,12 +163,12 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
             numMatrizY = 4;
             System.out.println("["+numMatrizX+"] ["+numMatrizY+"]");
         }if (radioButton6x4.isSelected()){
-            numMatrizX = 6;
-            numMatrizY = 4;
+            numMatrizX = 4;
+            numMatrizY = 6;
             System.out.println("["+numMatrizX+"] ["+numMatrizY+"]");
         }if (radioButton8x9.isSelected()){
-            numMatrizX = 8;
-            numMatrizY = 9;
+            numMatrizX = 9;
+            numMatrizY = 8;
             System.out.println("["+numMatrizX+"] ["+numMatrizY+"]");
         }
     }
