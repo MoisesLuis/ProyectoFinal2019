@@ -281,8 +281,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     }
     public void cambiarTanqueAAvion(int x , int y){
         String avion = "src/imagenes/tanques/Mt.gif";
-        //miAvion = new Avion(avion,x,y);
-        miVehiculo.matrizRecorridoInsertarI(avion,x,y);
+        miAvion = new Avion(avion,x,y);
+        //miVehiculo.matrizRecorridoInsertarI(avion,x,y);
     }
     public void cambiarAvionATanque(){
         String tanque = "src/imagenes/tanques/Mt.gif";
