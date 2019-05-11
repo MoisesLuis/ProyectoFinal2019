@@ -6,7 +6,7 @@ public class EVehiculo extends Vehiculo{
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
 
-    public EVehiculo(Cuadro matrizCuadros[][],String areaBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
+    public EVehiculo(Cuadro matrizCuadros[][],String areaBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY,String nameVehiculo){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
@@ -17,8 +17,13 @@ public class EVehiculo extends Vehiculo{
         defensa = 6;
         punteria = 60;
         movimientoEspecial = ataque*2;
+
+        nombre = nameVehiculo;
         vida = 25;
-        disparo = 0;
+        pp = 5;
+        nivel = 1;
+        exp = 0;
+        armas = 1;
     }
     public void matrizRecorridoInsertarImagen(String direct){
         ImageIcon imagen = new ImageIcon(direct);
@@ -30,7 +35,56 @@ public class EVehiculo extends Vehiculo{
                 matrizCuadros[aleaPosX][aleaPosY].setIcon(imagen);
             }
         }
+    }
 
+    @Override
+    int getPp() {
+        return pp;
+    }
+
+    @Override
+    int getExp() {
+        return exp;
+    }
+
+    @Override
+    String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    int getNivel() {
+        return nivel;
+    }
+
+    @Override
+    int getArmas() {
+        return armas;
+    }
+
+    @Override
+    void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    @Override
+    void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    @Override
+    void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    @Override
+    void setArmas(int armas) {
+        this.armas = armas;
     }
 
     @Override
@@ -63,10 +117,6 @@ public class EVehiculo extends Vehiculo{
         return vida;
     }
 
-    @Override
-    float getDisparo() {
-        return disparo;
-    }
 
     @Override
     void setArea(JButton area) {
@@ -101,10 +151,6 @@ public class EVehiculo extends Vehiculo{
         this.vida -= vida;
     }
 
-    @Override
-    void setDisparo(int disparo) {
-        this.disparo = disparo;
-    }
 
     @Override
     JPanel getPanel() {
@@ -113,6 +159,7 @@ public class EVehiculo extends Vehiculo{
 
     @Override
     void setPanel(JPanel panel) {
-
+        this.panel = panel;
     }
+
 }

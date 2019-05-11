@@ -9,7 +9,11 @@ abstract public class Vehiculo {
     protected int punteria;
     protected int movimientoEspecial;
     protected int vida;
-    protected int disparo;
+    protected int pp;
+    protected int exp;
+    protected String nombre;
+    protected int nivel;
+    protected int armas;
 /*
     public Vehiculo(int ataque,int defensa,int punteria, int movimiento,int vida, int disparo, JButton area){
         this.ataque = ataque;
@@ -21,13 +25,13 @@ abstract public class Vehiculo {
         this.disparo = disparo;
     }
 */
+
     abstract JButton getArea();
     abstract int getAtaque();
     abstract int getDefensa();
     abstract int getPunteria();
     abstract int getMovimientoEspecial();
     abstract int getVida();
-    abstract float getDisparo();
 
     abstract void setArea(JButton area);
     abstract void setAtaque(int ataque);
@@ -35,7 +39,17 @@ abstract public class Vehiculo {
     abstract void setPunteria(int punteria);
     abstract void setMovimientoEspecial(int movimiento);
     abstract void setVida(int vida);
-    abstract void setDisparo(int disparo);
     abstract JPanel getPanel();
     abstract void setPanel(JPanel panel);
+
+    abstract int getPp();
+    abstract int getExp();
+    abstract String getNombre();
+    abstract int getNivel();
+    abstract int getArmas();
+    abstract void setPp(int pp);
+    abstract void setExp(int exp);
+    abstract void setNombre(String nombre);
+    abstract void setNivel(int nivel);
+    abstract void setArmas(int armas);
 }

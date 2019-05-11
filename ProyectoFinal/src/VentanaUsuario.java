@@ -135,8 +135,8 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
         combo1.setBounds(360,575,200,20);
         fondo.add(combo1);
         combo1.addItem("");
-        combo1.addItem("1 aviones & 2 Tanques");
-        combo1.addItem("2 aviones & 1 Tanques");
+        combo1.addItem("1 avión & 2 Tanques");
+        combo1.addItem("2 aviones & 1 Tanque");
         combo1.addItem("3 aviones & 0 Tanques");
         combo1.addItem("0 aviones & 3 Tanques");
         combo1.addItemListener(this);

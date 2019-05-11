@@ -6,9 +6,10 @@ public class MVehiculo extends Vehiculo {
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
     private String imagen;
+    private String nombre;
    // public MVehiculo(JPanel panel, Cuadro area){}
 
-    public MVehiculo(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
+    public MVehiculo(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY, String nombre){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
@@ -16,13 +17,18 @@ public class MVehiculo extends Vehiculo {
         this.matrizCuadros = matrizCuadros;
         matrizRecorridoInsertarImagen(imagenBoton);
         this.imagen = imagenBoton;
+
         ataque = 10;
         defensa = 6;
         punteria = 60;
         movimientoEspecial = ataque*2;
-        vida = 25;
-        disparo = 0;
 
+        this.nombre = nombre;
+        vida = 25;
+        pp = 5;
+        nivel = 1;
+        exp = 0;
+        armas = 1;
     }
     public void matrizRecorridoInsertarImagen(String direct) {
         ImageIcon imagen = new ImageIcon(direct);
@@ -58,6 +64,56 @@ public class MVehiculo extends Vehiculo {
     }
 
     @Override
+    int getPp() {
+        return pp;
+    }
+
+    @Override
+    int getExp() {
+        return exp;
+    }
+
+    @Override
+    String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    int getNivel() {
+        return nivel;
+    }
+
+    @Override
+    int getArmas() {
+        return armas;
+    }
+
+    @Override
+    void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    @Override
+    void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    @Override
+    void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    @Override
+    void setArmas(int armas) {
+        this.armas = armas;
+    }
+
+    @Override
     JButton getArea() {
         return null;
     }
@@ -88,11 +144,6 @@ public class MVehiculo extends Vehiculo {
     }
 
     @Override
-    float getDisparo() {
-        return disparo;
-    }
-
-    @Override
     void setArea(JButton area) {
         this.area = area;
     }
@@ -120,11 +171,6 @@ public class MVehiculo extends Vehiculo {
     @Override
     void setVida(int vida) {
         this.vida = vida;
-    }
-
-    @Override
-    void setDisparo(int disparo) {
-        this.disparo = disparo;
     }
 
     @Override

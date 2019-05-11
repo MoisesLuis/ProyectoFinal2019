@@ -21,25 +21,32 @@ public class Avion extends Vehiculo {
     }
 */
 
+    int Velocidad;
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
 
     public Avion(String imagenBoto,int x , int y){
         matrizRecorridoInsertarImg(imagenBoto,x,y);
     }
-    public Avion(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
+    public Avion(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY,String nameVehiculo){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
         matrizRecorridoInsertarImagen(imagenBoton);
-        ataque = 10;
-        defensa = 6;
-        punteria = 60;
+        ataque = 7;
+        defensa = 3;
+        punteria = 70;
+        Velocidad = 1;
         movimientoEspecial = ataque*2;
+
+        nombre = nameVehiculo;
         vida = 25;
-        disparo = 0;
+        pp = 5;
+        nivel = 1;
+        exp = 0;
+        armas = 1;
 
     }
 
@@ -53,7 +60,6 @@ public class Avion extends Vehiculo {
                 matrizCuadros[x][y].setIcon(imagen);
             }
         }
-
     }
     public void matrizRecorridoInsertarImagen(String direct){
         ImageIcon imagen = new ImageIcon(direct);
@@ -67,6 +73,57 @@ public class Avion extends Vehiculo {
         }
 
     }
+
+    @Override
+    int getPp() {
+        return pp;
+    }
+
+    @Override
+    int getExp() {
+        return exp;
+    }
+
+    @Override
+    String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    int getNivel() {
+        return nivel;
+    }
+
+    @Override
+    int getArmas() {
+        return armas;
+    }
+
+    @Override
+    void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    @Override
+    void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    @Override
+    void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    @Override
+    void setArmas(int armas) {
+        this.armas = armas;
+    }
+
     @Override
     JButton getArea() {
         return null;
@@ -97,10 +154,6 @@ public class Avion extends Vehiculo {
         return vida;
     }
 
-    @Override
-    float getDisparo() {
-        return disparo;
-    }
 
     @Override
     void setArea(JButton area) {
@@ -137,11 +190,6 @@ public class Avion extends Vehiculo {
     }
 
     @Override
-    void setDisparo(int disparo) {
-        this.disparo = disparo;
-    }
-
-    @Override
     JPanel getPanel() {
         return null;
     }
@@ -149,5 +197,13 @@ public class Avion extends Vehiculo {
     @Override
     void setPanel(JPanel panel) {
 
+    }
+
+    public int getVelocidad() {
+        return Velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        Velocidad = velocidad;
     }
 }

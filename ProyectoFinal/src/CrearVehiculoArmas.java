@@ -25,24 +25,25 @@ public class CrearVehiculoArmas extends JFrame {
         panelCrearArmas = new JPanel();
         panelCrearArmas.setLayout(null);
         panelCrearArmas.setBounds(50,50,700,325);
+        panelCrearArmas.setBackground(new Color(0,0,0,64));
         add(panelCrearArmas);
         panelFondo.add(panelCrearArmas);
 
         panelCrearVehiculo = new JPanel();
         panelCrearVehiculo.setLayout(null);
         panelCrearVehiculo.setBounds(50,400,700,325);
-        panelCrearVehiculo.setBackground(Color.WHITE);
+        panelCrearVehiculo.setBackground(new Color(0,0,0,64));
         add(panelCrearVehiculo);
         panelFondo.add(panelCrearVehiculo);
 
 
         labelFondo = new JLabel();
-        ImageIcon imagenFon = new ImageIcon("src/imagenes/fondo.jpg" );
+        ImageIcon imagenFon = new ImageIcon("src/imagenes/aviones/fondoPanelEast.jpg" );
         labelFondo.setBounds(0,0,800,800);
         labelFondo.setIcon(new ImageIcon(imagenFon.getImage().getScaledInstance(labelFondo.getWidth(),labelFondo.getHeight(),Image.SCALE_SMOOTH)));
         panelFondo.add(labelFondo);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
+    
 }
