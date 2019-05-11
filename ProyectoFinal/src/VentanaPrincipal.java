@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,30 +19,36 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     Cuadro matrizCuadros[][];
     int matrizLogicaE[][];
-    private EVehiculo vehiculoEnemigo;
-    private MVehiculo miVehiculo;
-    private Lago lago;
+
     private Montaña montaña;
+    private Lago lago;
     private Avion miAvion;
+    private EVehiculo tanqueEnemigo;
+    private MVehiculo miTanque;
+
     VentanaUsuario parametros;
     int numCuadrosX,numCuadrosY,posXDeMVeh,posYDeMVe;
     ImageIcon imagenTanque;
 
     private MoverVehiculo ventanaMoverVehiculo;
 
+
     protected Random aleatorio;
     protected int aleaPosX = 0,aleaPosY=0,contadorCantAleatorio,contadorAgua,contadorMontaña,contadorTanque,contadorAvion,contadorEnemigo;
     String nombre;
 
 
-    JPanel panel,panelCenter,panelSouth;
+    JPanel panel,panelCenter,panelSouth,panelEast;
+
+    private JTextArea txtAreaReporte,txtAreaInfo;
+    private JScrollPane scrollpane1,scrollpane2;
 
     public VentanaPrincipal(String titulo,int numCuadrosX,int numCuadrosY){
         super(titulo);
         //setLayout(null);
         this.setTitle(titulo);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(805,1005);
+        setSize(1105,1005);
         //this.setVisible(true);
         this.setResizable(false);
         //this.getContentPane().setBackground(Color.BLACK);
@@ -50,7 +58,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(new Color(0,0,0));
+        panel.setBackground(new Color(100,0,0));
         this.setContentPane(panel);
 
 
@@ -61,6 +69,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panel.add(panelCenter);
         //contentPane.add(panelFondo);
 
+        panelEast = new JPanel();
+        panelEast.setLayout(null);
+        panelEast.setBounds(800,0,300,1005);
+        panelEast.setBackground(new Color(150,150,150));
+        panel.add(panelEast);
 
         panelSouth = new JPanel();
         panelSouth.setLayout(null);
@@ -196,6 +209,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         imagenPanelSouth.add(botonTirarDado2);
         //this.setContentPane(panel);
 
+        txtAreaInfo = new JTextArea();
+        txtAreaInfo.setEditable(false);
+        scrollpane1 = new JScrollPane(txtAreaInfo);
+        scrollpane1.setBounds(10,50,280,400);
+        panelEast.add(scrollpane1);
+
+        txtAreaReporte = new JTextArea();
+        txtAreaReporte.setEditable(false);
+        scrollpane2 = new JScrollPane(txtAreaReporte);
+        scrollpane2.setBounds(10,500,280,400);
+        panelEast.add(scrollpane2);
+
         this.setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -206,6 +231,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * El metodo siguiente es el que nos servirá
      * para los eventos de cada boton
      */
+
     public void actionPerformed(ActionEvent e){
         int a=0,b=0;
         if (e.getSource() == botonTanq){
@@ -245,13 +271,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         else if (e.getSource() == botonTirarDado){
             System.out.println("Estas presionando el: Dado para moverte");
             encontrarMiVehiculoEnPos();
-            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,1,matrizLogicaE,this);
+            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,1,matrizLogicaE,this,
+                    montaña,lago,miAvion,tanqueEnemigo,miTanque);
             System.out.println("["+posXDeMVeh+"]["+posYDeMVe+"]");
         }
         else if (e.getSource() == botonTirarDado2){
             System.out.println("Estas presionando el: Dado para hacer Daño");
             encontrarMiVehiculoEnPos();
-            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,2,matrizLogicaE,this);
+            ventanaMoverVehiculo = new MoverVehiculo(posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,matrizCuadros,panel,2,matrizLogicaE,this,
+                    montaña,lago,miAvion,tanqueEnemigo,miTanque);
         }
         else if (e.getSource() == menuItemNuevoRapido){
             limpiarEscenario();
@@ -288,7 +316,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             aleaPosX = aleatorio.nextInt(this.numCuadrosX/2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
         }
-        vehiculoEnemigo = new EVehiculo(matrizCuadros,enemigo,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
+        tanqueEnemigo = new EVehiculo(matrizCuadros,enemigo,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
         //matrizRecorridoInsertarImagen(enemigo);
     }
     public void colocarEAvion(){
@@ -316,17 +344,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             aleaPosX = 2+aleatorio.nextInt(this.numCuadrosX-2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
         }
-        miVehiculo = new MVehiculo(matrizCuadros,tanque,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
+        miTanque = new MVehiculo(matrizCuadros,tanque,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
         matrizLogicaE[aleaPosX][aleaPosY] = 4;
     }
     public void alMoverMTanque(int posX, int posY){
         String tanque = "src/imagenes/tanques/Mt.gif";
-        miVehiculo = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
+        miTanque = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
         matrizLogicaE[posX][posY] = 4;
     }
     public void alMoverMAvion(int posX, int posY){
         String tanque = "src/imagenes/aviones/avion.gif";
-        miVehiculo = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
+        miTanque = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY);
         matrizLogicaE[posX][posY] = 5;
     }
     public void quitarMTanqueAlMover(int posX,int posY){
@@ -366,7 +394,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     }
     public void cambiarAvionATanque(){
         String tanque = "src/imagenes/tanques/Mt.gif";
-        miVehiculo = new MVehiculo(matrizCuadros,tanque,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY);
+        miTanque = new MVehiculo(matrizCuadros,tanque,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY);
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
                 if (matrizLogicaE[i][j] == 5){
@@ -386,7 +414,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
                 if (matrizLogicaE[i][j] == 5){
-                    miVehiculo = null;
+                    miTanque = null;
                     miAvion = null;
                 }
             }

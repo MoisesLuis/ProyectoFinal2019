@@ -15,24 +15,35 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
     int direccion;
     int cuantoMover,cuantoQuitarVida;
     Cuadro matriz[][];
-    int matrizLogic[][];
     private Dado classDado;
     private int botonSeleccionado;
     private VentanaPrincipal ventana;
     int posMaxX,posMaxY;
+    int posObjetoX,posObjtoY;
+
+    Montaña montaña;
+    Lago lago;
+    Avion miAvion;
+    EVehiculo tanqueEnemigo;
+    MVehiculo miTanque;
 
 
-
-    public MoverVehiculo(int posX, int posY,int tamañoX,int tamañoY,Cuadro matriz[][],JPanel panel,int botonSeleccionado, int matrizLogic[][],VentanaPrincipal ventana){
+    public MoverVehiculo(int posX, int posY,int tamañoX,int tamañoY,Cuadro matriz[][],JPanel panel,int botonSeleccionado, int matrizLogic[][],VentanaPrincipal ventana
+    , Montaña montaña, Lago lago,Avion miAvion, EVehiculo tanqueEnemigo, MVehiculo miTanque){
         this.tamañoX = tamañoX;
         this.tamañoY = tamañoY;
         this.panel = panel;
         this.posX = posX;
         this.posY = posY;
         this.matriz = matriz;
-        this.matrizLogic = matrizLogic;
         this.ventana = ventana;
         this.botonSeleccionado = botonSeleccionado;
+        this.montaña = montaña;
+        this.lago = lago;
+        this.miAvion = miAvion;
+        this.tanqueEnemigo = tanqueEnemigo;
+        this.miTanque = miTanque;
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         classDado = new Dado(matrizLogic,tamañoX,tamañoY,posX,posY);
 
@@ -105,7 +116,9 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
             }
             if (botonSeleccionado == 2){
                 cuantoQuitarVida = classDado.iniciarDadoDaño();
+                encontrarObjetoParaDisparar(posX,posY);
                 disparar();
+                siDestruyenTerrenoColocarTierra();
             }
             this.setVisible(false);
         }
@@ -324,6 +337,104 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
      * metodoo para disparar
      */
     public void disparar(){
+        if (ventana.matrizLogicaE[posObjetoX][posObjtoY] != 0){
+            System.out.println("estas en disparar");
+            System.out.println("Posición del objeto encontrado en X: "+posObjetoX);
+            System.out.println("Posición del objeto encontrado en Y: "+posObjtoY);
 
+            if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 1){
+                if (tanqueEnemigo.getDefensa() < cuantoQuitarVida){
+                    tanqueEnemigo.setQuitarVida(cuantoQuitarVida);
+                    System.out.println("Vida restante del tanque enemigo: "+tanqueEnemigo.getVida());
+                }
+            } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 2){
+                lago.setQuitarVidaLago(cuantoQuitarVida);
+                System.out.println("Vida restante del lago: "+lago.getVidaLago());
+
+            } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 3){
+                montaña.setQuitarVidaMontaña(cuantoQuitarVida);
+                System.out.println("Vida restante de la montaña: "+montaña.getVidaMontaña());
+            }
+        }
     }
+    public boolean encontrarObjetoParaDisparar(int x, int y) {
+        if (direccion == 1) {
+            for (int i = 1; x - i >= 0; i++) {
+                if (ventana.matrizLogicaE[x - i][y] != 0) {
+                    posObjetoX = x-i;
+                    posObjtoY = y;
+                    break;
+                }
+            }
+        }
+        if (direccion == 2) {
+            for (int i = 1; x + i < tamañoX; i++) {
+                if (ventana.matrizLogicaE[x + i][y] == 0) {
+                    posObjetoX = x + i;
+                    posObjtoY = y;
+                    break;
+                }
+            }
+        }
+        if (direccion == 3) {
+            for (int i = 1; y + i < tamañoY; i++) {
+                if (ventana.matrizLogicaE[x][y + i] == 0) {
+                    posObjetoX = x;
+                    posObjtoY = y+i;
+                    break;
+                }
+            }
+        }
+        if (direccion == 4) {
+            for (int i = 1; y - i >= 0; i++) {
+                if (ventana.matrizLogicaE[x][y - i] == 0) {
+                    posObjetoX = x;
+                    posObjtoY = y-i;
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void siDestruyenTerrenoColocarTierra(){
+        for (int i = 0; i<tamañoX; i++){
+            for (int j = 0; j<tamañoY; j++){
+                if (lago != null){
+                    if (lago.getVidaLago()<0){
+                        if (ventana.matrizLogicaE[i][j] == 2)
+                            lago = null;
+                    }
+                }
+                if ( miTanque != null){
+                    if (miTanque.getVida()<0){
+                        if (ventana.matrizLogicaE[i][j] == 4)
+                            miTanque = null;
+                    }
+                }
+                if (miAvion != null){
+                    if (miAvion.getVida() < 0){
+                        if (ventana.matrizLogicaE[i][j] == 5)
+                            miAvion = null;
+                    }
+                }
+                if (montaña != null){
+                    if (montaña.getVidaMontaña()<0){
+                        if (ventana.matrizLogicaE[i][j] == 3)
+                            montaña = null;
+                    }
+                }
+                if (tanqueEnemigo != null){
+                    if (tanqueEnemigo.getVida()<0){
+                        if (ventana.matrizLogicaE[i][j] == 1)
+                            tanqueEnemigo = null;
+                    }
+                }
+            }
+        }
+    }
+
 }
+
+
+

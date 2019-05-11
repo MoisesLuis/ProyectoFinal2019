@@ -29,7 +29,7 @@ public class Montaña {
 
     }
 
-    public void setVidaMontaña(int a){
+    public void setQuitarVidaMontaña(int a){
         vidaMontaña -= a;
     }
     public void setVidaMontañaReanudada(int a){

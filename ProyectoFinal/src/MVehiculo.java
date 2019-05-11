@@ -5,11 +5,8 @@ public class MVehiculo extends Vehiculo {
 
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
+    private String imagen;
    // public MVehiculo(JPanel panel, Cuadro area){}
-
-    public MVehiculo(String imagenBoto,int x , int y){
-        matrizRecorridoInsertarI(imagenBoto,x,y);
-    }
 
     public MVehiculo(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
         this.aleaPosX = aleaPX;
@@ -18,6 +15,7 @@ public class MVehiculo extends Vehiculo {
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
         matrizRecorridoInsertarImagen(imagenBoton);
+        this.imagen = imagenBoton;
         ataque = 10;
         defensa = 6;
         punteria = 60;
@@ -38,15 +36,27 @@ public class MVehiculo extends Vehiculo {
         }
     }
 
-        public void matrizRecorridoInsertarI(String direct,int x,int y){
-            ImageIcon imagen = new ImageIcon(direct);
-                   // matrizCuadros[x][y].setIcon(new ImageIcon());
-                    matrizCuadros[x][y].setContentAreaFilled(false);
-                    matrizCuadros[x][y].setBorderPainted(true);
-                    matrizCuadros[x][y].setIcon(imagen);
-
-
+        public void matrizCambiarLaPosición(MVehiculo miTanque,int x,int y){
+        ImageIcon imagen = new ImageIcon(miTanque.getImagen());
+            matrizCuadros[x][y].setIcon(imagen);
         }
+
+    public int getAleaPosX() {
+        return aleaPosX;
+    }
+
+    public int getAleaPosY() {
+        return aleaPosY;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
     @Override
     JButton getArea() {
         return null;

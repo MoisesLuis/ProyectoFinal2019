@@ -28,13 +28,13 @@ public class Lago {
 
     }
 
-    public void setVidaMontaña(int a){
+    public void setQuitarVidaLago(int a){
         vidaLago -= a;
     }
-    public void setVidaMontañaReanudada(int a){
+    public void setVidaLagoReanudada(int a){
         vidaLago += a;
     }
-    public int getVidaMontaña(){
+    public int getVidaLago(){
         return vidaLago;
     }
 }

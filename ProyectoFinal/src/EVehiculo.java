@@ -97,6 +97,9 @@ public class EVehiculo extends Vehiculo{
     void setVida(int vida) {
         this.vida = vida;
     }
+    void setQuitarVida(int vida){
+        this.vida -= vida;
+    }
 
     @Override
     void setDisparo(int disparo) {

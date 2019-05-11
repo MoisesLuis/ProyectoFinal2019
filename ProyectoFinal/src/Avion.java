@@ -132,6 +132,10 @@ public class Avion extends Vehiculo {
         this.vida = vida;
     }
 
+    void setQuitarVida(int vida){
+        this.vida -= vida;
+    }
+
     @Override
     void setDisparo(int disparo) {
         this.disparo = disparo;
