@@ -91,8 +91,6 @@ public class VentanaInicio extends JFrame implements ActionListener {
         imagenFondo.setIcon(new ImageIcon(tanque.getImage().getScaledInstance(800,500,Image.SCALE_SMOOTH)));
         panel1.add(imagenFondo);
 
-
-
        // this.setVisible(true);
     }
     public void actionPerformed(ActionEvent e){

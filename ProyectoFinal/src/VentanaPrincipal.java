@@ -32,7 +32,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     private MoverVehiculo ventanaMoverVehiculo;
 
-
     protected Random aleatorio;
     protected int aleaPosX = 0,aleaPosY=0,contadorCantAleatorio,contadorAgua,contadorMontaña,contadorTanque,contadorAvion,contadorEnemigo;
     String nombre;
@@ -181,9 +180,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonTirarDado2.addActionListener(this);
 
 
-        ImageIcon tanq = new ImageIcon("src/imagenes/tanque.png");
+        ImageIcon tanq = new ImageIcon("src/imagenes/tanques/bT.gif");
         botonTanq.setBounds(20,35,200,100);
-        botonTanq.setIcon(new ImageIcon(tanq.getImage().getScaledInstance(botonTanq.getWidth(),botonTanq.getHeight(),Image.SCALE_SMOOTH)));
+        botonTanq.setIcon(tanq);
         botonTanq.setBorder(null);
         botonTanq.setContentAreaFilled(false);
         botonTanq.setBorderPainted(true);
@@ -196,9 +195,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonAvion.setContentAreaFilled(false);
         botonAvion.setBorder(null);
 
-        ImageIcon dados = new ImageIcon("src/imagenes/dados.png");
+        ImageIcon dados = new ImageIcon("src/imagenes/dad.gif");
         botonTirarDado.setBounds(460,35,150,100);
-        botonTirarDado.setIcon(new ImageIcon(dados.getImage().getScaledInstance(botonTirarDado.getWidth(),botonTirarDado.getHeight(),Image.SCALE_SMOOTH)));
+        botonTirarDado.setIcon(dados);
         botonTirarDado.setContentAreaFilled(false);
         botonTirarDado.setBorderPainted(true);
         botonTirarDado.setBorder(null);
@@ -425,7 +424,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         matrizLogicaE[posX][posY] = 4;
     }
     public void alMoverMAvion(int posX, int posY){
-        String tanque = "src/imagenes/aviones/avion.gif";
+        String tanque = "src/imagenes/aviones/mA.gif";
         miTanque = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY,nombre);
         matrizLogicaE[posX][posY] = 5;
     }
@@ -439,7 +438,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     }
     public void colocarMAvion(){
-        String avion = "src/imagenes/aviones/avion.gif";
+        String avion = "src/imagenes/aviones/mA.gif";
         while (matrizLogicaE[aleaPosX][aleaPosY] !=0) {
             aleaPosX = 2+aleatorio.nextInt(this.numCuadrosX-2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
@@ -448,7 +447,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         matrizLogicaE[aleaPosX][aleaPosY]= 5;
     }
     public void cambiarTanqueAAvion(){
-        String avion = "src/imagenes/aviones/avion.gif";
+        String avion = "src/imagenes/aviones/mA.gif";
         miAvion = new Avion(matrizCuadros,avion,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,nombre);
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
