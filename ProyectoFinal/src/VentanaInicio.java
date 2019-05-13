@@ -14,9 +14,11 @@ public class VentanaInicio extends JFrame implements ActionListener {
     JTextField textField1,textfield2,textField3;
     JButton botonAceptar,botonCrear;
     JPanel panel1;
-    private static String nombre;
-    private ArrayList<Persona> listPersona;
-    private ArrayList<Persona>personaRecuperada;
+    protected static String nombre;
+    protected ArrayList<Persona> listPersona;
+    protected ArrayList<Persona>personaRecuperada;
+    protected ArrayList<MVehiculo>listVehiculo;
+    protected Persona persona;
 
     public VentanaInicio(){
         this.setBounds(0,0,800,500);
@@ -141,7 +143,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null,"Primero crea un usuario!!!");
 
             if (existElUsuario()){
-                VentanaUsuario ventana = new VentanaUsuario(nombre,this);
+                VentanaUsuario ventana = new VentanaUsuario(nombre,this,listVehiculo);
                 ventana.setVisible(true);
                 this.setVisible(false);
             }if (existElUsuario() == false && !textField1.getText().equals(""))
@@ -153,7 +155,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
         if (e.getSource() == botonCrear){
             System.out.println("press boton Crear");
             añadirPersona();
-            VentanaUsuario ventana = new VentanaUsuario(nombre,this);
+            VentanaUsuario ventana = new VentanaUsuario(nombre,this,listVehiculo);
             ventana.setVisible(true);
             this.setVisible(false);
             try{
@@ -180,7 +182,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
         try{
             String nombre = textfield2.getText();
             int edad = Integer.parseInt(textField3.getText());
-            Persona persona = new Persona(nombre,edad);
+            persona = new Persona(nombre,edad);
             listPersona.add(persona);
         }catch (NumberFormatException e){
             System.out.println(">>>"+e);

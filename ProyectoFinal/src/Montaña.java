@@ -5,14 +5,16 @@ public class Montaña {
     private int vidaMontaña;
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
+    private String imagenMontaña;
 
-    public Montaña(Cuadro matrizCuadros[][],String areaBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
+    public Montaña(Cuadro matrizCuadros[][],int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
+        imagenMontaña ="src/imagenes/montaña/Montaña.jpg";
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
-        matrizRecorridoInsertarImagen(areaBoton);
+        matrizRecorridoInsertarImagen(imagenMontaña);
         vidaMontaña = 30;
     }
 
@@ -27,6 +29,14 @@ public class Montaña {
             }
         }
 
+    }
+
+    public String getImagenMontaña() {
+        return imagenMontaña;
+    }
+
+    public void setImagenMontaña(String imagenMontaña) {
+        this.imagenMontaña = imagenMontaña;
     }
 
     public void setQuitarVidaMontaña(int a){

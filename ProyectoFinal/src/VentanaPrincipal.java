@@ -7,6 +7,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
@@ -17,14 +18,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     private JLabel labelElejirVehiculo,labelTirarDados,labelTirarDados2,imagenPanelSouth;
     private JButton botonTanq,botonAvion,botonTirarDado,botonTirarDado2;
 
-    Cuadro matrizCuadros[][];
-    int matrizLogicaE[][];
+    protected static Cuadro matrizCuadros[][];
+    protected static int matrizLogicaE[][];
 
     private Montaña montaña;
     private Lago lago;
     private Avion miAvion;
     private EVehiculo tanqueEnemigo;
     private MVehiculo miTanque;
+    //private Persona persona;
+    private ArrayList<MVehiculo>listVehiculo;
 
     VentanaUsuario parametros;
     int numCuadrosX,numCuadrosY,posXDeMVeh,posYDeMVe;
@@ -36,7 +39,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     protected int aleaPosX = 0,aleaPosY=0,contadorCantAleatorio,contadorAgua,contadorMontaña,contadorTanque,contadorAvion,contadorEnemigo;
     String nombre;
 
-
     JPanel panel,panelCenter,panelSouth,panelEast;
 
     private JTextArea txtAreaReporte,txtAreaInfo;
@@ -44,7 +46,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     VentanaInicio ventanaInicio;
 
-    public VentanaPrincipal(String titulo,int numCuadrosX,int numCuadrosY,VentanaInicio ventanaInicio){
+    public VentanaPrincipal(String titulo,int numCuadrosX,int numCuadrosY,VentanaInicio ventanaInicio, ArrayList<MVehiculo>listVehiculo){
         super(titulo);
         setLayout(null);
         this.setTitle(titulo);
@@ -55,7 +57,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.setResizable(false);
         //this.getContentPane().setBackground(new Color(0,0,0,0));
 
+        //this.persona= persona;
+
         this.ventanaInicio = ventanaInicio;
+
+        listVehiculo = listVehiculo;
 
         nombre = titulo;
         matrizLogicaE = new int[numCuadrosX][numCuadrosY];
@@ -367,7 +373,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             colocarEscenario();
         }
         else if (e.getSource() == menuItemNuevo){
-            VentanaUsuario regresar = new VentanaUsuario(nombre,ventanaInicio);
+            VentanaUsuario regresar = new VentanaUsuario(nombre,ventanaInicio,listVehiculo);
             regresar.setVisible(true);
             this.setVisible(false);
         }
@@ -403,14 +409,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         String agua = "src/imagenes/agua/aguaf.gif";
         while (matrizLogicaE[aleaPosX][aleaPosY]!=0)
             numAleatorio();
-        lago = new Lago(matrizCuadros,agua,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
+        lago = new Lago(matrizCuadros,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
     }
 
     public void colocarMontaña(){
         String montaña = "src/imagenes/montaña/Montaña.jpg";
         while (matrizLogicaE[aleaPosX][aleaPosY] !=0)
             numAleatorio();
-        this.montaña = new Montaña(matrizCuadros,montaña,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
+        this.montaña = new Montaña(matrizCuadros,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY);
     }
 
     public void colocarMTanque(){
@@ -419,17 +425,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             aleaPosX = 2+aleatorio.nextInt(this.numCuadrosX-2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
         }
-        miTanque = new MVehiculo(matrizCuadros,tanque,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY,nombre);
+        miTanque = new MVehiculo(matrizCuadros,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY,nombre);
         matrizLogicaE[aleaPosX][aleaPosY] = 4;
     }
     public void alMoverMTanque(int posX, int posY){
         String tanque = "src/imagenes/tanques/Mt.gif";
-        miTanque = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY,nombre);
+        miTanque = new MVehiculo(matrizCuadros,posX,posY,numCuadrosX,numCuadrosY,nombre);
         matrizLogicaE[posX][posY] = 4;
     }
     public void alMoverMAvion(int posX, int posY){
         String tanque = "src/imagenes/aviones/mA.gif";
-        miTanque = new MVehiculo(matrizCuadros,tanque,posX,posY,numCuadrosX,numCuadrosY,nombre);
+        miTanque = new MVehiculo(matrizCuadros,posX,posY,numCuadrosX,numCuadrosY,nombre);
         matrizLogicaE[posX][posY] = 5;
     }
     public void quitarMTanqueAlMover(int posX,int posY){
@@ -447,12 +453,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             aleaPosX = 2+aleatorio.nextInt(this.numCuadrosX-2);
             aleaPosY = aleatorio.nextInt(this.numCuadrosY);
         }
-        miAvion = new Avion(matrizCuadros,avion,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY,nombre);
+        miAvion = new Avion(matrizCuadros,aleaPosX,aleaPosY,numCuadrosX,numCuadrosY,nombre);
         matrizLogicaE[aleaPosX][aleaPosY]= 5;
     }
     public void cambiarTanqueAAvion(){
         String avion = "src/imagenes/aviones/mA.gif";
-        miAvion = new Avion(matrizCuadros,avion,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,nombre);
+        miAvion = new Avion(matrizCuadros,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,nombre);
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
                 if (matrizLogicaE[i][j] == 4){
@@ -469,7 +475,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     }
     public void cambiarAvionATanque(){
         String tanque = "src/imagenes/tanques/Mt.gif";
-        miTanque = new MVehiculo(matrizCuadros,tanque,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,nombre);
+        miTanque = new MVehiculo(matrizCuadros,posXDeMVeh,posYDeMVe,numCuadrosX,numCuadrosY,nombre);
         for (int i = 0; i<numCuadrosX; i++){
             for (int j = 0; j<numCuadrosY; j++){
                 if (matrizLogicaE[i][j] == 5){

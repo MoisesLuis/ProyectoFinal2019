@@ -11,7 +11,11 @@ public class Persona implements Serializable {
     private ArrayList<Vehiculo> listaVehiculo;
     private JButton alPressBoton;
     private JTextArea txtArea;
+
+    private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
+    private Cuadro matrizCuadros[][];
     private String imagenVehiculo;
+
 
     public Persona (Vehiculo newVehiculo){
 
@@ -25,9 +29,11 @@ public class Persona implements Serializable {
     }
 
     public Persona (String nombre, int edad){
+
         this.nombre = nombre;
         this.edad = edad;
         listaVehiculo = new ArrayList<Vehiculo>();
+        vehiculosIniciales();
     }
 
 
@@ -39,18 +45,37 @@ public class Persona implements Serializable {
         alPressBoton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarPersona();
+                mostrarVehiculo();
             }
         });
 
     }
 
-    public void agregarPersona(){
 
+    public void usarVehiculo(int j){
+        for (int i = 0; i<3; i++){
+            if (j==i){
+                listaVehiculo.get(i);
+            }
+        }
+    }
+
+    public void vehiculosIniciales(){
+        for (int i = 0; i<3; i++){
+            nameVehiculo = "Tanq"+i+2+i+"MBLV";
+            Vehiculo tanques = new MVehiculo(nameVehiculo);
+            listaVehiculo.add(tanques);
+        }
+        for (int j = 0; j<3; j++){
+            nameVehiculo = "Avion"+j+2+j+"MBLV";
+            Vehiculo aviones = new Avion(nameVehiculo);
+            listaVehiculo.add(aviones);
+        }
     }
 
     public void agregarVehiculo(){
-
+        Vehiculo vehiculo = new MVehiculo(nameVehiculo);
+        listaVehiculo.add(vehiculo);
     }
 
     public void mostrarVehiculo(){
@@ -69,16 +94,33 @@ public class Persona implements Serializable {
         }
 
     }
-    public void mostrarPersona(){
 
+    public ArrayList<Vehiculo> getListaVehiculo() {
+        return listaVehiculo;
+    }
+
+    public void setListaVehiculo(ArrayList<Vehiculo> listaVehiculo) {
+        this.listaVehiculo = listaVehiculo;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getNameVehiculo() {
+    public String getNameVehiculo(int i) {
+        for (int j = 0; i<listaVehiculo.size(); i++){
+            if (j==i){
+                nameVehiculo = listaVehiculo.get(i).getNombre();
+            }
+        }
         return nameVehiculo;
+    }
+
+    public void setNameVehiculo(String name, int j) {
+        for (int i = 0; i<listaVehiculo.size(); i++) {
+            if (j==i)
+            this.nameVehiculo = name;
+        }
     }
 
     public int getEdad() {
@@ -87,10 +129,6 @@ public class Persona implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public void setNameVehiculo(String nameVehiculo) {
-        this.nameVehiculo = nameVehiculo;
     }
 
     public void setEdad(int edad) {

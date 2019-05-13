@@ -7,6 +7,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 
 public class VentanaUsuario extends JFrame implements ActionListener, ChangeListener, ItemListener {
@@ -26,13 +27,26 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
 
     VentanaInicio ventanaInic;
 
-    public VentanaUsuario(String nombre, VentanaInicio ventanaInic){
+    private int cantAvionesSelect;
+    private int cantTanquesSelect;
+
+    private Persona persona;
+    ArrayList<MVehiculo>listVehiculo;
+
+    public VentanaUsuario(String nombre, VentanaInicio ventanaInic,ArrayList<MVehiculo>listVehiculo ){
         setSize(830,500);
         setLocationRelativeTo(null);
         setBackground(Color.BLUE);
         setTitle(nombre);
         this.nombre = nombre;
         //setIconImage(new ImageIcon(getClass().getResource("src/imagenes/fondo.jpg")).getImage());
+
+        this.persona = persona;
+
+        this.listVehiculo = listVehiculo;
+
+        cantTanquesSelect=0;
+        cantTanquesSelect=0;
 
         this.ventanaInic = ventanaInic;
 
@@ -212,7 +226,7 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
 
         }
         if (e.getSource() == botonJugar){
-            VentanaPrincipal jugar = new VentanaPrincipal(nombre,numMatrizX,numMatrizY,ventanaInic);
+            VentanaPrincipal jugar = new VentanaPrincipal(nombre,numMatrizX,numMatrizY,ventanaInic,listVehiculo);
             jugar.setVisible(true);
             this.setVisible(false);
             System.out.println("Press");
@@ -242,13 +256,40 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
             System.out.println("["+numMatrizX+"] ["+numMatrizY+"]");
         }
         if (radioButtonVS.isSelected()){
+            startGameVs();
             System.out.println("VS");
         }
         if (radioButtonContraPC.isSelected()){
+            startGameContraPC();
             System.out.println("Contra PC");
         }
     }
     public void itemStateChanged(ItemEvent e){
+        if (e.getItem() == combo1){
+            String item = combo1.getSelectedItem().toString();
+            if (item.equals("1 avión & 2 Tanques")){
+                cantAvionesSelect = 1;
+                cantTanquesSelect = 2;
+            }
+            if (item.equals("2 aviones & 1 Tanque")){
+                cantAvionesSelect = 2;
+                cantTanquesSelect = 1;
+            }
+            if (item.equals("3 aviones & 0 Tanques")){
+                cantAvionesSelect = 3;
+                cantTanquesSelect = 0;
+            }
+            if (item.equals("0 aviones & 3 Tanques")){
+                cantAvionesSelect = 0;
+                cantTanquesSelect = 3;
+            }
+        }
+    }
+
+    public void startGameVs(){
+
+    }
+    public void startGameContraPC(){
 
     }
 
