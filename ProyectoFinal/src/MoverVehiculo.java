@@ -369,7 +369,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                             "                                                         \n"+
                             "                                                         \n");
 
-                    txtAreaInfo.add(this);
+
                 }
             } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 2){
                 lago.setQuitarVidaLago(cuantoQuitarVida);
@@ -390,7 +390,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                         "                                                        \n"+
                         "                                                         \n"+
                         "                                                         \n");
-                txtAreaInfo.add(this);
+
             } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 3){
                 montaña.setQuitarVidaMontaña(cuantoQuitarVida);
                 System.out.println("Vida restante de la montaña: "+montaña.getVidaMontaña());
@@ -410,7 +410,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                         "                                                        \n"+
                         "                                                         \n"+
                         "                                                         \n");
-                txtAreaInfo.add(this);
+
             }else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 4){
                 miTanque.setVidaQuitar(cuantoQuitarVida);
                 System.out.println("Vida restante de tu vehiculo: "+miTanque.getVida());
@@ -434,7 +434,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                         " Movimiento Especial:  "+miTanque.getMovimientoEspecial()+" \n"+
                         "                                                         \n"+
                         "                                                         \n");
-                txtAreaInfo.add(this);
+
             }else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 5){
                 miAvion.setQuitarVida(cuantoQuitarVida);
                 System.out.println("Vida restante de tu vehiculo: "+miAvion.getVida());
@@ -458,7 +458,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                         " Movimiento Especial:  "+miAvion.getMovimientoEspecial()+" \n"+
                         "                                                         \n"+
                         "                                                         \n");
-                txtAreaInfo.add(this);
+
             }
         }
     }

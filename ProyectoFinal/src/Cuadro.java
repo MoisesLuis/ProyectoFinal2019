@@ -13,6 +13,9 @@ import java.util.Random;
     boolean verifi;
     boolean cambio = true;
     boolean cambioAvion = true;
+     private JTextArea textArea;
+
+
 
 
      public Cuadro(int posX, int posY, JPanel panel1, VentanaPrincipal tmpVentana){
@@ -30,6 +33,15 @@ import java.util.Random;
 
         numAleatorioX = posAleatorioX.nextInt(rangoX);
         numAleatorioY = posAleatorioY.nextInt(rangoY);
+
+         textArea = new JTextArea();
+         textArea.setEditable(false);
+         textArea.setBorder(null);
+         textArea.setOpaque(false);
+         textArea.setBackground(new Color(20,20,20,64));
+         textArea.setBounds(10,600,280,300);
+         textArea.setFont(new Font("News706 BT",Font.BOLD,18));
+         textArea.setForeground(Color.RED);
 
         this.addActionListener(new ActionListener() {
             @Override
@@ -60,11 +72,107 @@ import java.util.Random;
                     }
                 }
                 if (ventana.matrizLogicaE[posX][posY] ==1 || ventana.matrizLogicaE[posX][posY] ==2 || ventana.matrizLogicaE[posX][posY] == 3 ){
-
+                    informacion();
                 }
 
             }
         });
+    }
+    public void informacion(){
+         if (ventana.matrizLogicaE[posX][posY] ==1){
+             ventana.getTxtAreaReporte().setText("                                \n"+
+                     "            Vehiculo:  Tanque Enemigo  \n"+
+                     "                                \n"+
+                     "   Nombre:  "+ventana.getTanqueEnemigo().getNombre()+"\n"+
+                     "                              \n"+
+                     "            Vida:      "+ventana.getTanqueEnemigo().getVida()+"           \n"+
+                     "            PP:  "+ventana.getTanqueEnemigo().getPp()+"                   \n"+
+                     "            Nivel:  "+ventana.getTanqueEnemigo().getNivel()+"             \n"+
+                     "            Experiencia:  "+ventana.getTanqueEnemigo().getExp()+"         \n"+
+                     "            Armas:  "+ventana.getTanqueEnemigo().getArmas()+"             \n"+
+                     "                                                        \n"+
+                     "                                                        \n"+
+                     "            Ataque:    "+ventana.getTanqueEnemigo().getAtaque()+"         \n"+
+                     "            Defensa:   "+ventana.getTanqueEnemigo().getDefensa()+"        \n"+
+                     "            Puntería:  "+ventana.getTanqueEnemigo().getPunteria()+"       \n"+
+                     " Movimiento Especial:  "+ventana.getTanqueEnemigo().getMovimientoEspecial()+" \n"+
+                     "                                                         \n"+
+                     "                                                         \n");
+         }
+         if (ventana.matrizLogicaE[posX][posY] ==2){
+
+             ventana.getTxtAreaReporte().setText("                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "         Terreno: Lago Pantanoso  \n"+
+                     "                                \n"+
+                     "   Nombre:  "+ventana.getLago().getVidaLago()+"\n"+
+                     "                              \n"+
+                     "                                                        \n"+
+                     "                                                        \n"+
+                     "                                                         \n"+
+                     "                                                         \n");
+         }
+         if (ventana.matrizLogicaE[posX][posY] ==3){
+             ventana.getTxtAreaReporte().setText("                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "                                \n"+
+                     "         Terreno: Montaña  \n"+
+                     "                                \n"+
+                     "   Nombre:  "+ventana.getMontaña().getVidaMontaña()+"\n"+
+                     "                              \n"+
+                     "                                                        \n"+
+                     "                                                        \n"+
+                     "                                                         \n"+
+                     "                                                         \n");
+         }
+         if (ventana.matrizLogicaE[posX][posY] ==4){
+
+             ventana.getTxtAreaReporte().setText("                                \n"+
+                     "            Vehiculo: Tanque \n"+
+                     "                                \n"+
+                     "   Nombre:  "+ventana.getMiTanque().getNombre()+"\n"+
+                     "                              \n"+
+                     "            Vida:      "+ventana.getMiTanque().getVida()+"           \n"+
+                     "            PP:  "+ventana.getMiTanque().getPp()+"                   \n"+
+                     "            Nivel:  "+ventana.getMiTanque().getNivel()+"             \n"+
+                     "            Experiencia:  "+ventana.getMiTanque().getExp()+"         \n"+
+                     "            Armas:  "+ventana.getMiTanque().getArmas()+"             \n"+
+                     "                                                        \n"+
+                     "                                                        \n"+
+                     "            Ataque:    "+ventana.getMiTanque().getAtaque()+"         \n"+
+                     "            Defensa:   "+ventana.getMiTanque().getDefensa()+"        \n"+
+                     "            Puntería:  "+ventana.getMiTanque().getPunteria()+"       \n"+
+                     " Movimiento Especial:  "+ventana.getMiTanque().getMovimientoEspecial()+" \n"+
+                     "                                                         \n"+
+                     "                                                         \n");
+         }
+         if (ventana.matrizLogicaE[posX][posY] ==5){
+             ventana.getTxtAreaReporte().setText("                                \n"+
+                     "            Vehiculo: Avión \n"+
+                     "                                \n"+
+                     "   Nombre:  "+ventana.getMiAvion().getNombre()+"\n"+
+                     "                              \n"+
+                     "            Vida:      "+ventana.getMiAvion().getVida()+"           \n"+
+                     "            PP:  "+ventana.getMiAvion().getPp()+"                   \n"+
+                     "            Nivel:  "+ventana.getMiAvion().getNivel()+"             \n"+
+                     "            Experiencia:  "+ventana.getMiAvion().getExp()+"         \n"+
+                     "            Armas:  "+ventana.getMiAvion().getArmas()+"             \n"+
+                     "                                                        \n"+
+                     "                                                        \n"+
+                     "            Ataque:    "+ventana.getMiAvion().getAtaque()+"         \n"+
+                     "            Defensa:   "+ventana.getMiAvion().getDefensa()+"        \n"+
+                     "            Puntería:  "+ventana.getMiAvion().getPunteria()+"       \n"+
+                     " Movimiento Especial:  "+ventana.getMiAvion().getMovimientoEspecial()+" \n"+
+                     "                                                         \n"+
+                     "                                                         \n");
+         }
     }
 
 

@@ -626,6 +626,33 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
     }
 
+    public void setTxtAreaReporte(JTextArea txtAreaReporte) {
+        this.txtAreaReporte = txtAreaReporte;
+    }
+
+    public JTextArea getTxtAreaReporte() {
+        return txtAreaReporte;
+    }
+
+    public Montaña getMontaña() {
+        return montaña;
+    }
+
+    public Lago getLago() {
+        return lago;
+    }
+
+    public Avion getMiAvion() {
+        return miAvion;
+    }
+
+    public EVehiculo getTanqueEnemigo() {
+        return tanqueEnemigo;
+    }
+
+    public MVehiculo getMiTanque() {
+        return miTanque;
+    }
 }
 
 

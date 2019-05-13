@@ -39,83 +39,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/VentanaPrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MoverVehiculo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="404" column="50" selection-start-line="404" selection-start-column="50" selection-end-line="404" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cuadro.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+            <state relative-caret-position="418">
+              <caret line="632" column="42" selection-start-line="632" selection-start-column="42" selection-end-line="632" selection-end-column="42" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#25456#25457#0" expanded="true" />
+                <element signature="e#25498#25499#0" expanded="true" />
+                <element signature="e#25602#25603#0" expanded="true" />
+                <element signature="e#25625#25626#0" expanded="true" />
+                <element signature="e#25655#25656#0" expanded="true" />
+                <element signature="e#25684#25685#0" expanded="true" />
+                <element signature="e#25711#25712#0" expanded="true" />
+                <element signature="e#25744#25745#0" expanded="true" />
+                <element signature="e#25774#25775#0" expanded="true" />
+                <element signature="e#25817#25818#0" expanded="true" />
+                <element signature="e#25853#25854#0" expanded="true" />
+                <element signature="e#25891#25892#0" expanded="true" />
+                <element signature="e#25922#25923#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Avion.java">
+        <entry file="file://$PROJECT_DIR$/src/Cuadro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="190" column="24" selection-start-line="190" selection-start-column="24" selection-end-line="190" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MVehiculo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VentanaInicio.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VentanaUsuario.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="222" column="35" lean-forward="true" selection-start-line="222" selection-start-column="35" selection-end-line="222" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Persona.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="-357">
+              <caret line="119" column="48" lean-forward="true" selection-start-line="119" selection-start-column="48" selection-end-line="119" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,13 +124,13 @@
         <option value="$PROJECT_DIR$/src/VentanaInicio.java" />
         <option value="$PROJECT_DIR$/src/MVehiculo.java" />
         <option value="$PROJECT_DIR$/src/Avion.java" />
-        <option value="$PROJECT_DIR$/src/Cuadro.java" />
-        <option value="$PROJECT_DIR$/src/VentanaPrincipal.java" />
         <option value="$PROJECT_DIR$/src/MoverVehiculo.java" />
+        <option value="$PROJECT_DIR$/src/VentanaPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/Cuadro.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
@@ -232,7 +181,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="172" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE" value="left" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="544" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557768892887" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557774646991" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -329,7 +278,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32977587" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14925373" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14925373" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -354,7 +303,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info active="true" anchor="right" id="Debug" order="8" sideWeight="0.49920508" visible="true" weight="0.31556502" />
+      <window_info anchor="right" id="Debug" order="8" sideWeight="0.49920508" visible="true" weight="0.31556502" />
       <window_info anchor="right" id="Coverage" order="9" sideWeight="0.5007949" side_tool="true" weight="0.3976546" />
     </layout>
     <layout-to-restore>
@@ -543,10 +492,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ListaPersonas.java" />
-    <entry file="file://$PROJECT_DIR$/src/Persona.java">
+    <entry file="file://$PROJECT_DIR$/src/Reporte.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="1819">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Avion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="979">
+          <caret line="190" column="24" selection-start-line="190" selection-start-column="24" selection-end-line="190" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -560,10 +519,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Reporte.java">
+    <entry file="file://$PROJECT_DIR$/src/Persona.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="170">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -572,7 +531,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VentanaInicio.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="-1037">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -590,34 +549,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VentanaPrincipal.java">
+    <entry file="file://$PROJECT_DIR$/src/MoverVehiculo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
+        <state relative-caret-position="373">
+          <caret line="440" column="16" selection-start-line="440" selection-start-column="16" selection-end-line="459" selection-end-column="87" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MoverVehiculo.java">
+    <entry file="file://$PROJECT_DIR$/src/VentanaPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="404" column="50" selection-start-line="404" selection-start-column="50" selection-end-line="404" selection-end-column="50" />
+        <state relative-caret-position="418">
+          <caret line="632" column="42" selection-start-line="632" selection-start-column="42" selection-end-line="632" selection-end-column="42" />
+          <folding>
+            <element signature="e#25456#25457#0" expanded="true" />
+            <element signature="e#25498#25499#0" expanded="true" />
+            <element signature="e#25602#25603#0" expanded="true" />
+            <element signature="e#25625#25626#0" expanded="true" />
+            <element signature="e#25655#25656#0" expanded="true" />
+            <element signature="e#25684#25685#0" expanded="true" />
+            <element signature="e#25711#25712#0" expanded="true" />
+            <element signature="e#25744#25745#0" expanded="true" />
+            <element signature="e#25774#25775#0" expanded="true" />
+            <element signature="e#25817#25818#0" expanded="true" />
+            <element signature="e#25853#25854#0" expanded="true" />
+            <element signature="e#25891#25892#0" expanded="true" />
+            <element signature="e#25922#25923#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cuadro.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Avion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="190" column="24" selection-start-line="190" selection-start-column="24" selection-end-line="190" selection-end-column="24" />
+        <state relative-caret-position="-357">
+          <caret line="119" column="48" lean-forward="true" selection-start-line="119" selection-start-column="48" selection-end-line="119" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
