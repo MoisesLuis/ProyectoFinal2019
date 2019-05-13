@@ -5,15 +5,12 @@ public class MVehiculo extends Vehiculo {
 
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
+    private String imagen;
     private String nombre;
-    private String imagenVehiculo;
    // public MVehiculo(JPanel panel, Cuadro area){}
 
     public MVehiculo(String nombre){
         //this.imagen = imagenBoton;
-
-        imagenVehiculo="src/imagenes/tanques/Mt.gif";
-        matrizRecorridoInsertarImagen(imagenVehiculo);
         ataque = 10;
         defensa = 6;
         punteria = 60;
@@ -27,13 +24,14 @@ public class MVehiculo extends Vehiculo {
         armas = 1;
     }
 
-    public MVehiculo(Cuadro matrizCuadros[][],int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY, String nombre){
+    public MVehiculo(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY, String nombre){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
-        matrizRecorridoInsertarImagen(imagenVehiculo);
+        matrizRecorridoInsertarImagen(imagenBoton);
+        this.imagen = imagenBoton;
 
         ataque = 10;
         defensa = 6;
@@ -60,18 +58,10 @@ public class MVehiculo extends Vehiculo {
         }
     }
 
-       /* public void matrizCambiarLaPosición(MVehiculo miTanque,int x,int y){
+        public void matrizCambiarLaPosición(MVehiculo miTanque,int x,int y){
         ImageIcon imagen = new ImageIcon(miTanque.getImagen());
             matrizCuadros[x][y].setIcon(imagen);
-        }*/
-
-    public String getImagenVehiculo() {
-        return imagenVehiculo;
-    }
-
-    public void setImagenVehiculo(String imagenVehiculo) {
-        this.imagenVehiculo = imagenVehiculo;
-    }
+        }
 
     public int getAleaPosX() {
         return aleaPosX;
@@ -81,6 +71,13 @@ public class MVehiculo extends Vehiculo {
         return aleaPosY;
     }
 
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
 
     @Override
     int getPp() {
@@ -190,6 +187,12 @@ public class MVehiculo extends Vehiculo {
     @Override
     void setVida(int vida) {
         this.vida = vida;
+    }
+    void setVidaQuitar(int vida) {
+        this.vida -= vida;
+    }
+    void setVidaAumentar(int vida) {
+        this.vida -= vida;
     }
 
     @Override

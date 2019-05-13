@@ -26,10 +26,11 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
     Avion miAvion;
     EVehiculo tanqueEnemigo;
     MVehiculo miTanque;
+    JTextArea txtAreaInfo;
 
 
     public MoverVehiculo(int posX, int posY,int tamañoX,int tamañoY,Cuadro matriz[][],JPanel panel,int botonSeleccionado, int matrizLogic[][],VentanaPrincipal ventana
-    , Montaña montaña, Lago lago,Avion miAvion, EVehiculo tanqueEnemigo, MVehiculo miTanque){
+    , Montaña montaña, Lago lago,Avion miAvion, EVehiculo tanqueEnemigo, MVehiculo miTanque,JTextArea txtArea){
         this.tamañoX = tamañoX;
         this.tamañoY = tamañoY;
         this.panel = panel;
@@ -43,6 +44,7 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
         this.miAvion = miAvion;
         this.tanqueEnemigo = tanqueEnemigo;
         this.miTanque = miTanque;
+        this.txtAreaInfo = txtArea;
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         classDado = new Dado(matrizLogic,tamañoX,tamañoY,posX,posY);
@@ -346,14 +348,117 @@ public class MoverVehiculo extends JFrame implements ActionListener, ItemListene
                 if (tanqueEnemigo.getDefensa() < cuantoQuitarVida){
                     tanqueEnemigo.setQuitarVida(cuantoQuitarVida);
                     System.out.println("Vida restante del tanque enemigo: "+tanqueEnemigo.getVida());
+                    txtAreaInfo.setLineWrap(true);
+                    txtAreaInfo.setWrapStyleWord(true);
+                    txtAreaInfo.setText("                                \n"+
+                            "            Vehiculo:  Tanque Enemigo  \n"+
+                            "                                \n"+
+                            "   Nombre:  "+tanqueEnemigo.getNombre()+"\n"+
+                            "                              \n"+
+                            "            Vida:      "+tanqueEnemigo.getVida()+"           \n"+
+                            "            PP:  "+tanqueEnemigo.getPp()+"                   \n"+
+                            "            Nivel:  "+tanqueEnemigo.getNivel()+"             \n"+
+                            "            Experiencia:  "+tanqueEnemigo.getExp()+"         \n"+
+                            "            Armas:  "+tanqueEnemigo.getArmas()+"             \n"+
+                            "                                                        \n"+
+                            "                                                        \n"+
+                            "            Ataque:    "+tanqueEnemigo.getAtaque()+"         \n"+
+                            "            Defensa:   "+tanqueEnemigo.getDefensa()+"        \n"+
+                            "            Puntería:  "+tanqueEnemigo.getPunteria()+"       \n"+
+                            " Movimiento Especial:  "+tanqueEnemigo.getMovimientoEspecial()+" \n"+
+                            "                                                         \n"+
+                            "                                                         \n");
+
+                    txtAreaInfo.add(this);
                 }
             } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 2){
                 lago.setQuitarVidaLago(cuantoQuitarVida);
                 System.out.println("Vida restante del lago: "+lago.getVidaLago());
-
+                txtAreaInfo.setLineWrap(true);
+                txtAreaInfo.setWrapStyleWord(true);
+                txtAreaInfo.setText("                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "         Terreno: Lago Pantanoso  \n"+
+                        "                                \n"+
+                        "   Nombre:  "+lago.getVidaLago()+"\n"+
+                        "                              \n"+
+                        "                                                        \n"+
+                        "                                                        \n"+
+                        "                                                         \n"+
+                        "                                                         \n");
+                txtAreaInfo.add(this);
             } else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 3){
                 montaña.setQuitarVidaMontaña(cuantoQuitarVida);
                 System.out.println("Vida restante de la montaña: "+montaña.getVidaMontaña());
+                txtAreaInfo.setLineWrap(true);
+                txtAreaInfo.setWrapStyleWord(true);
+                txtAreaInfo.setText("                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "                                \n"+
+                        "         Terreno: Montaña  \n"+
+                        "                                \n"+
+                        "   Nombre:  "+montaña.getVidaMontaña()+"\n"+
+                        "                              \n"+
+                        "                                                        \n"+
+                        "                                                        \n"+
+                        "                                                         \n"+
+                        "                                                         \n");
+                txtAreaInfo.add(this);
+            }else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 4){
+                miTanque.setVidaQuitar(cuantoQuitarVida);
+                System.out.println("Vida restante de tu vehiculo: "+miTanque.getVida());
+                txtAreaInfo.setLineWrap(true);
+                txtAreaInfo.setWrapStyleWord(true);
+                txtAreaInfo.setText("                                \n"+
+                        "            Vehiculo: Tanque \n"+
+                        "                                \n"+
+                        "   Nombre:  "+miTanque.getNombre()+"\n"+
+                        "                              \n"+
+                        "            Vida:      "+miTanque.getVida()+"           \n"+
+                        "            PP:  "+miTanque.getPp()+"                   \n"+
+                        "            Nivel:  "+miTanque.getNivel()+"             \n"+
+                        "            Experiencia:  "+miTanque.getExp()+"         \n"+
+                        "            Armas:  "+miTanque.getArmas()+"             \n"+
+                        "                                                        \n"+
+                        "                                                        \n"+
+                        "            Ataque:    "+miTanque.getAtaque()+"         \n"+
+                        "            Defensa:   "+miTanque.getDefensa()+"        \n"+
+                        "            Puntería:  "+miTanque.getPunteria()+"       \n"+
+                        " Movimiento Especial:  "+miTanque.getMovimientoEspecial()+" \n"+
+                        "                                                         \n"+
+                        "                                                         \n");
+                txtAreaInfo.add(this);
+            }else if (ventana.matrizLogicaE[posObjetoX][posObjtoY] == 5){
+                miAvion.setQuitarVida(cuantoQuitarVida);
+                System.out.println("Vida restante de tu vehiculo: "+miAvion.getVida());
+                txtAreaInfo.setLineWrap(true);
+                txtAreaInfo.setWrapStyleWord(true);
+                txtAreaInfo.setText("                                \n"+
+                        "            Vehiculo:  \n"+
+                        "                                \n"+
+                        "   Nombre:  "+miAvion.getNombre()+"\n"+
+                        "                              \n"+
+                        "            Vida:      "+miAvion.getVida()+"           \n"+
+                        "            PP:  "+miAvion.getPp()+"                   \n"+
+                        "            Nivel:  "+miAvion.getNivel()+"             \n"+
+                        "            Experiencia:  "+miAvion.getExp()+"         \n"+
+                        "            Armas:  "+miAvion.getArmas()+"             \n"+
+                        "                                                        \n"+
+                        "                                                        \n"+
+                        "            Ataque:    "+miAvion.getAtaque()+"         \n"+
+                        "            Defensa:   "+miAvion.getDefensa()+"        \n"+
+                        "            Puntería:  "+miAvion.getPunteria()+"       \n"+
+                        " Movimiento Especial:  "+miAvion.getMovimientoEspecial()+" \n"+
+                        "                                                         \n"+
+                        "                                                         \n");
+                txtAreaInfo.add(this);
             }
         }
     }

@@ -2,39 +2,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Avion extends Vehiculo {
+/*
+    public Avion(JPanel panel, JButton area){
+        ImageIcon areaBoton = new ImageIcon("src/imagenes/aviones/Air.gif");
+        this.area = area;
+        area.setIcon(new ImageIcon(areaBoton.getImage().getScaledInstance(200,200, Image.SCALE_SMOOTH)));
+        area.setBorderPainted(true);
+        area.setContentAreaFilled(false);
+        area.setBorder(null);
+
+        this.panel = panel;
+        ataque = 10;
+        defensa = 6;
+        punteria = 60;
+        movimientoEspecial = ataque*2;
+        vida = 25;
+        disparo = 0;
+    }
+*/
 
     int Velocidad;
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
-    private String nameAvion;
-    private String imagenAvion;
 
-    public Avion(String nameAvion){
-        this.imagenAvion="src/imagenes/aviones/mA.gif";
-        matrizRecorridoInsertarImagen(imagenAvion);
-        this.nameAvion = nameAvion;
-        ataque = 7;
-        defensa = 3;
-        punteria = 70;
-        Velocidad = 1;
-        movimientoEspecial = ataque*2;
-
-        nombre = nameAvion;
-        vida = 25;
-        pp = 5;
-        nivel = 1;
-        exp = 0;
-        armas = 1;
+    public Avion(String imagenBoto,int x , int y){
+        matrizRecorridoInsertarImg(imagenBoto,x,y);
     }
-
-
-    public Avion(Cuadro matrizCuadros[][],int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY,String nameVehiculo){
+    public Avion(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY,String nameVehiculo){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
-        matrizRecorridoInsertarImagen(imagenAvion);
+        matrizRecorridoInsertarImagen(imagenBoton);
         ataque = 7;
         defensa = 3;
         punteria = 70;
@@ -72,22 +72,6 @@ public class Avion extends Vehiculo {
             }
         }
 
-    }
-
-    public void setImagenAvion(String imagenAvion) {
-        this.imagenAvion = imagenAvion;
-    }
-
-    public String getImagenAvion() {
-        return imagenAvion;
-    }
-
-    public String getNameAvion() {
-        return nameAvion;
-    }
-
-    public void setNameAvion(String nameAvion) {
-        this.nameAvion = nameAvion;
     }
 
     @Override
@@ -203,6 +187,9 @@ public class Avion extends Vehiculo {
 
     void setQuitarVida(int vida){
         this.vida -= vida;
+    }
+    void setVidaAumentar(int vida){
+        this.vida += vida;
     }
 
     @Override

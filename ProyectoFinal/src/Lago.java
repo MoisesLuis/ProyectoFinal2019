@@ -4,16 +4,14 @@ public class Lago {
     private int vidaLago;
     private int aleaPosX,aleaPosY,numCuadrosX,numCuadrosY;
     private Cuadro matrizCuadros[][];
-    private String imagenLago;
 
-    public Lago(Cuadro matrizCuadros[][],int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
-        imagenLago = "src/imagenes/agua/aguaf.gif";
+    public Lago(Cuadro matrizCuadros[][],String areaBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
         this.numCuadrosX = numCuadrosX;
         this.numCuadrosY = numCuadorsY;
         this.matrizCuadros = matrizCuadros;
-        matrizRecorridoInsertarImagen(imagenLago);
+        matrizRecorridoInsertarImagen(areaBoton);
         vidaLago = 30;
     }
 
@@ -38,13 +36,5 @@ public class Lago {
     }
     public int getVidaLago(){
         return vidaLago;
-    }
-
-    public String getImagenLago() {
-        return imagenLago;
-    }
-
-    public void setImagenLago(String imagenLago) {
-        this.imagenLago = imagenLago;
     }
 }

@@ -59,9 +59,14 @@ import java.util.Random;
                         cambioAvion = true;
                     }
                 }
+                if (ventana.matrizLogicaE[posX][posY] ==1 || ventana.matrizLogicaE[posX][posY] ==2 || ventana.matrizLogicaE[posX][posY] == 3 ){
+
+                }
+
             }
         });
     }
+
 
      public void abilitarTCamino(){
          for (int i = 0; i<rangoX; i++){
