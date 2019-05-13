@@ -9,6 +9,21 @@ public class MVehiculo extends Vehiculo {
     private String nombre;
    // public MVehiculo(JPanel panel, Cuadro area){}
 
+    public MVehiculo(String nombre){
+        //this.imagen = imagenBoton;
+        ataque = 10;
+        defensa = 6;
+        punteria = 60;
+        movimientoEspecial = ataque*2;
+
+        this.nombre = nombre;
+        vida = 25;
+        pp = 5;
+        nivel = 1;
+        exp = 0;
+        armas = 1;
+    }
+
     public MVehiculo(Cuadro matrizCuadros[][],String imagenBoton,int aleaPX,int aleaPY,int numCuadrosX,int numCuadorsY, String nombre){
         this.aleaPosX = aleaPX;
         this.aleaPosY = aleaPY;
@@ -30,6 +45,7 @@ public class MVehiculo extends Vehiculo {
         exp = 0;
         armas = 1;
     }
+
     public void matrizRecorridoInsertarImagen(String direct) {
         ImageIcon imagen = new ImageIcon(direct);
         for (int i = 0; i < numCuadrosX; i++) {

@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 
 public class VentanaUsuario extends JFrame implements ActionListener, ChangeListener, ItemListener {
-    private JButton botonCrear,botonJugar,botonAceptar,botonTienda;
+    private JButton botonCrear,botonJugar,botonAceptar,botonTienda,botonRegresar;
     private JLabel labelCrearArmas,labelCrearVehiculo,labelEscenario,labelTipoJuego,labelVehiculos,labelTienda,
             label1,label2,label3,label4,imagen1,imagen2;
     private JRadioButton radioButton4x4,radioButton6x4,radioButton8x9,radioButtonContraPC,radioButtonVS;
@@ -24,13 +24,17 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
     JPanel panelFondo;
     JLabel fondo;
 
-    public VentanaUsuario(String nombre){
+    VentanaInicio ventanaInic;
+
+    public VentanaUsuario(String nombre, VentanaInicio ventanaInic){
         setSize(830,500);
         setLocationRelativeTo(null);
         setBackground(Color.BLUE);
         setTitle(nombre);
         this.nombre = nombre;
         //setIconImage(new ImageIcon(getClass().getResource("src/imagenes/fondo.jpg")).getImage());
+
+        this.ventanaInic = ventanaInic;
 
         panelFondo = new JPanel();
         panelFondo.setLayout(null);
@@ -47,10 +51,11 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
          * Inicializando los atributos
          */
 
-        //botonCrear = new JButton("Crear");
+        botonCrear = new JButton("Crear");
         botonAceptar = new JButton("Aceptar");
         botonTienda = new JButton("Ir");
         botonJugar = new JButton("Jugar");
+        botonRegresar = new JButton("Regresar");
 
         imagen1 = new JLabel();
         imagen2 = new JLabel();
@@ -75,7 +80,6 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
          */
 
         ImageIcon imagenB = new ImageIcon("src/imagenes/botFinal1.png");
-        botonCrear = new JButton();
        // botonCrear.setContentAreaFilled(false);
         botonCrear.setBorderPainted(true);
         botonCrear.setBounds(110,335,140,50);
@@ -190,6 +194,13 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
         labelTienda.setForeground(new Color(250,20,20));
         labelTienda.setBackground(new Color(0,0,0,154));
         fondo.add(labelTienda);
+
+        ImageIcon regresar = new ImageIcon("src/imagenes/regresar.jpg");
+        botonRegresar.setBounds(500,380,170,50);
+        botonRegresar.setIcon(regresar);
+        fondo.add(botonRegresar);
+        botonRegresar.addActionListener(this);
+
     }
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == botonCrear){
@@ -201,7 +212,7 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
 
         }
         if (e.getSource() == botonJugar){
-            VentanaPrincipal jugar = new VentanaPrincipal(nombre,numMatrizX,numMatrizY);
+            VentanaPrincipal jugar = new VentanaPrincipal(nombre,numMatrizX,numMatrizY,ventanaInic);
             jugar.setVisible(true);
             this.setVisible(false);
             System.out.println("Press");
@@ -209,6 +220,10 @@ public class VentanaUsuario extends JFrame implements ActionListener, ChangeList
         if (e.getSource() == botonTienda){
             Tienda tienda = new Tienda(this);
             tienda.setVisible(true);
+            this.setVisible(false);
+        }
+        if (e.getSource() == botonRegresar){
+            ventanaInic.setVisible(true);
             this.setVisible(false);
         }
     }

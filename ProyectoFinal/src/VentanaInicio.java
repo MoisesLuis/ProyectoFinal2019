@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class VentanaInicio extends JFrame implements ActionListener {
 
@@ -9,8 +14,15 @@ public class VentanaInicio extends JFrame implements ActionListener {
     JTextField textField1,textfield2,textField3;
     JButton botonAceptar,botonCrear;
     JPanel panel1;
-    private String nombre;
+    private static String nombre;
+    private ArrayList<Persona> listPersona;
+    private ArrayList<Persona>personaRecuperada;
+
     public VentanaInicio(){
+        this.setBounds(0,0,800,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+
         //super(titulo);
         this.setTitle(nombre);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,27 +102,107 @@ public class VentanaInicio extends JFrame implements ActionListener {
         ImageIcon tanque = new ImageIcon("src/imagenes/fondo.jpg");
         imagenFondo.setIcon(new ImageIcon(tanque.getImage().getScaledInstance(800,500,Image.SCALE_SMOOTH)));
         panel1.add(imagenFondo);
+        listPersona = new ArrayList<Persona>();
+        personaRecuperada = new ArrayList<Persona>();
+
+        try{
+            ObjectInputStream recuperandoFichero = new ObjectInputStream(new FileInputStream("C:/Users/Benjamin/Desktop/Persona.txt"));
+            personaRecuperada = (ArrayList<Persona>) recuperandoFichero.readObject();
+            recuperandoFichero.close();
+
+            for (int i = 0; i<personaRecuperada.size(); i++){
+                nombre = personaRecuperada.get(i).getNombre();
+                System.out.println(nombre);
+            }
+
+        }catch (Exception exc){
+
+        }
 
        // this.setVisible(true);
     }
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == botonAceptar){
-            nombre = textField1.getText();
-            VentanaUsuario ventana = new VentanaUsuario(nombre);
+            try{
+                ObjectInputStream recuperandoFichero = new ObjectInputStream(new FileInputStream("C:/Users/Benjamin/Desktop/Persona.txt"));
+                ArrayList<Persona> personaRecuperad = (ArrayList<Persona>) recuperandoFichero.readObject();
+                recuperandoFichero.close();
+
+                for (Persona p: personaRecuperad){
+                    System.out.println("Usuarios creados>>>>>"+p.getNombre());
+                }
+
+            }catch (Exception exc){ }
+
+            if (textField1.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"No as ingresado un nombre de Usuario");
+            }
+            if (personaRecuperada.isEmpty())
+                JOptionPane.showMessageDialog(null,"Primero crea un usuario!!!");
+
+            if (existElUsuario()){
+                VentanaUsuario ventana = new VentanaUsuario(nombre,this);
+                ventana.setVisible(true);
+                this.setVisible(false);
+            }if (existElUsuario() == false && !textField1.getText().equals(""))
+                JOptionPane.showMessageDialog(null,"Usuario Incorrecto!!!");
+
+            System.out.println("press boton aceptar");
+        }
+
+        if (e.getSource() == botonCrear){
+            System.out.println("press boton Crear");
+            añadirPersona();
+            VentanaUsuario ventana = new VentanaUsuario(nombre,this);
             ventana.setVisible(true);
             this.setVisible(false);
-            System.out.println("press boton aceptar");
-        }else if (e.getSource() == botonCrear){
-            System.out.println("press boton Crear");
+            try{
+                ObjectOutputStream escribiendoFichero = new ObjectOutputStream(new FileOutputStream("C:/Users/Benjamin/Desktop/Persona.txt"));
+                escribiendoFichero.writeObject(listPersona);
+                escribiendoFichero.close();
+
+                ObjectInputStream recuperandoFichero = new ObjectInputStream(new FileInputStream("C:/Users/Benjamin/Desktop/Persona.txt"));
+                 personaRecuperada = (ArrayList<Persona>) recuperandoFichero.readObject();
+                recuperandoFichero.close();
+
+                for (Persona p: personaRecuperada){
+                    System.out.println(p.getNombre());
+                }
+
+            }catch (Exception exc){
+
+            }
 
         }
     }
 
+    public void añadirPersona(){
+        try{
+            String nombre = textfield2.getText();
+            int edad = Integer.parseInt(textField3.getText());
+            Persona persona = new Persona(nombre,edad);
+            listPersona.add(persona);
+        }catch (NumberFormatException e){
+            System.out.println(">>>"+e);
+            JOptionPane.showMessageDialog(null,"¡¡¡Dato incorrecto!!!   Vuelve a intentarlo más tarde...  ");
+        }
+
+    }
+    public boolean existElUsuario(){
+        for (int i = 0; i<personaRecuperada.size(); i++){
+            String nombre = personaRecuperada.get(i).getNombre();
+            if (nombre.equals(textField1.getText())){
+                System.out.println(">>>"+nombre+">>>");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String args[]){
         VentanaInicio obj1 = new VentanaInicio();
-        obj1.setBounds(0,0,800,500);
-        obj1.setLocationRelativeTo(null);
-        obj1.setResizable(false);
         obj1.setVisible(true);
     }
+
+
 }

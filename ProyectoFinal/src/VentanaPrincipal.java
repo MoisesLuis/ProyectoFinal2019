@@ -42,7 +42,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     private JTextArea txtAreaReporte,txtAreaInfo;
     private JLabel title1,title2,fondoPanelEast;
 
-    public VentanaPrincipal(String titulo,int numCuadrosX,int numCuadrosY){
+    VentanaInicio ventanaInicio;
+
+    public VentanaPrincipal(String titulo,int numCuadrosX,int numCuadrosY,VentanaInicio ventanaInicio){
         super(titulo);
         setLayout(null);
         this.setTitle(titulo);
@@ -52,6 +54,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         //this.setVisible(true);
         this.setResizable(false);
         //this.getContentPane().setBackground(new Color(0,0,0,0));
+
+        this.ventanaInicio = ventanaInicio;
 
         nombre = titulo;
         matrizLogicaE = new int[numCuadrosX][numCuadrosY];
@@ -202,12 +206,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonTirarDado.setBorderPainted(true);
         botonTirarDado.setBorder(null);
 
-        ImageIcon dados2 = new ImageIcon("src/imagenes/dadosDisparo.png");
+        ImageIcon dados2 = new ImageIcon("src/imagenes/tanques/ataq.gif");
         botonTirarDado2.setBounds(620,35,150,100);
-        botonTirarDado2.setIcon(new ImageIcon(dados2.getImage().getScaledInstance(botonTirarDado2.getWidth(),botonTirarDado2.getHeight(),Image.SCALE_SMOOTH)));
+        botonTirarDado2.setIcon(dados2);
         botonTirarDado2.setContentAreaFilled(false);
         botonTirarDado2.setBorderPainted(true);
-        botonTirarDado2.setBorder(null);
+        //botonTirarDado2.setBorder(null);
 
         colocarEscenario();
         imagenPanelSouth.add(labelElejirVehiculo);
@@ -363,7 +367,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             colocarEscenario();
         }
         else if (e.getSource() == menuItemNuevo){
-            VentanaUsuario regresar = new VentanaUsuario(nombre);
+            VentanaUsuario regresar = new VentanaUsuario(nombre,ventanaInicio);
             regresar.setVisible(true);
             this.setVisible(false);
         }
